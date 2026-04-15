@@ -669,7 +669,14 @@
         </div>
       </div>
       <div class="contact-form-wrap">
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="dc07fcbd-033f-4a0c-89b6-7382372feb12">
+          <input type="hidden" name="subject" value="New Lead from Sid's HVAC Website">
+          <input type="hidden" name="from_name" value="Sid's HVAC Website">
+          <input type="hidden" name="redirect" value="https://web3forms.com/success">
+          <!-- Honeypot spam trap — must stay empty -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none !important" tabindex="-1" autocomplete="off">
+
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name *</label>
@@ -694,15 +701,15 @@
             <label for="service">Service Needed</label>
             <select id="service" name="service">
               <option value="">Select a service...</option>
-              <option value="ac-repair">AC Repair</option>
-              <option value="ac-install">AC Installation</option>
-              <option value="heating-repair">Heating Repair</option>
-              <option value="heating-install">Heating Installation</option>
-              <option value="maintenance">Maintenance Plan</option>
-              <option value="air-quality">Air Quality</option>
-              <option value="smart-thermostat">Smart Thermostat</option>
-              <option value="emergency">Emergency Service</option>
-              <option value="other">Other</option>
+              <option value="AC Repair">AC Repair</option>
+              <option value="AC Installation">AC Installation</option>
+              <option value="Heating Repair">Heating Repair</option>
+              <option value="Heating Installation">Heating Installation</option>
+              <option value="Maintenance Plan">Maintenance Plan</option>
+              <option value="Air Quality">Air Quality</option>
+              <option value="Smart Thermostat">Smart Thermostat</option>
+              <option value="Emergency Service">Emergency Service</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           <div class="form-group">

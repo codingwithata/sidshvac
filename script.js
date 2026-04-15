@@ -148,16 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
     statsObserver.observe(statsSection);
   }
 
-  // ---------- CONTACT FORM ----------
+  // ---------- CONTACT FORM (Web3Forms) ----------
   const form = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Simulate form submission
-    const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
+
+    // Show loading state
     submitBtn.innerHTML = `
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="spinner">
         <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/>
@@ -166,10 +167,32 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      form.style.display = 'none';
-      formSuccess.classList.add('active');
-    }, 1500);
+    try {
+      const formData = new FormData(form);
+      const jsonData = {};
+      formData.forEach((value, key) => { jsonData[key] = value; });
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(jsonData)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        form.style.display = 'none';
+        formSuccess.classList.add('active');
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (error) {
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+      alert('Something went wrong. Please call us at (555) 123-4567 or try again.');
+      console.error('Form error:', error);
+    }
   });
 
   // ---------- ADD SPINNER ANIMATION ----------
