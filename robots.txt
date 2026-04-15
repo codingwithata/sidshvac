@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sidshvac.com/sitemap.xml
+Sitemap: https://www.simshvac.com/sitemap.xml
