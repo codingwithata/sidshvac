@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- SCROLL ANIMATIONS ----------
   const animatedElements = document.querySelectorAll(
-    '.service-card, .process-step, .testimonial-card, .about-feature'
+    '.service-card, .process-step, .testimonial-card, .about-feature, .gallery-item'
   );
 
   const observer = new IntersectionObserver((entries) => {
